@@ -1,0 +1,99 @@
+﻿
+<pre>
+<script>
+
+/*
+ * sensor.html
+ *
+ * This program will showcase some basic array data processing techniques
+ *
+ * We will populate an array, then iterate through to compute averages, high and low values in array.
+ * The use of constants will allow us to easily adjust number of data items - making code maintenance simple!
+ */
+
+ function read_sensor(sensor_number) {
+    // Simulate a sensor reading through a random number between 0 and 100
+    return Math.random() * 100;
+}
+
+function wait(num_minutes) {
+    // Simulate waiting num_minutes (do nothing)
+}
+
+const MAX_READINGS = 8;         // Number of readings (samples) per shift
+const TIME_DELAY = 60;          // Time delay in minutes before next reading
+const MAX_DAYS = 5;             // Number of days
+const DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];  // Day names
+
+// 2D array for 5 days' worth of temperature readings (5 days x 8 hourly samples)
+var temperature = [];
+for (let day = 0; day < MAX_DAYS; day++) {
+    temperature[day] = [];
+}
+
+// Collect readings for each day and shift (8 samples per day)
+for (let day = 0; day < MAX_DAYS; day++) {
+    for (let x = 0; x < MAX_READINGS; x++) {
+        temperature[day][x] = read_sensor(1);
+        wait(TIME_DELAY);  // Simulate time delay between readings
+    }
+}
+
+// Variables to store statistics for the full 5-day period
+let overallSum = 0;
+let overallHigh = 0;
+let overallLow = 100;
+
+// Output all readings visually with day labels
+for (let day = 0; day < MAX_DAYS; day++) {
+    document.writeln(`${DAY_NAMES[day]}:`);
+    for (let x = 0; x < MAX_READINGS; x++) {
+        document.writeln(`${temperature[day][x].toFixed(2)}`);  // Output with 2 decimal places
+    }
+    document.writeln("");
+}
+
+// Compute and output statistics for each day
+for (let day = 0; day < MAX_DAYS; day++) {
+	let sum = 0;
+	let average = 0;
+	let high = 0;
+	let low = 100;
+
+	// Compute sum, high, and low values for the current day
+	for (let x = 0; x < MAX_READINGS; x++) {
+			sum += temperature[day][x];
+			if (temperature[day][x] > high) {
+					high = temperature[day][x];
+			}
+			if (temperature[day][x] < low) {
+					low = temperature[day][x];
+			}
+	}
+
+	average = sum / MAX_READINGS;
+	
+	// Add to overall statistics
+	overallSum += sum;
+	if (high > overallHigh) overallHigh = high;
+	if (low < overallLow) overallLow = low;
+	// Output stats for the current day using templated strings
+	document.writeln(`${DAY_NAMES[day]} Stats:`);
+	document.writeln(`Average temperature: ${average.toFixed(2)}`);
+	document.writeln(`Highest temperature: ${high.toFixed(2)}`);
+	document.writeln(`Lowest temperature: ${low.toFixed(2)}`);
+	document.writeln("");
+
+}
+
+// Compute overall statistics for the full 5-day period
+let overallAverage = overallSum / (MAX_DAYS * MAX_READINGS);
+
+// Output the overall stats to the console
+document.writeln("Full 5-Day Period Stats:");
+document.writeln(`Overall average temperature: ${overallAverage.toFixed(2)}`);
+document.writeln(`Overall highest temperature: ${overallHigh.toFixed(2)}`);
+document.writeln(`Overall lowest temperature: ${overallLow.toFixed(2)}`);
+
+</script>
+</pre>
