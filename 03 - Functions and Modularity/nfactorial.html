@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<pre>
+<script>
+
+/*
+ * nfactorial.html
+ *
+ * This program will showcase some basic techniques around the use of functions.
+ *
+ * The solution will create two functions:
+ *    main() - the mainline code that is invoked when this file is executed
+ *    n_factorial() - which will accept a numerical value and output the n! of that value
+ *
+ * The intent is to showcase the approaches to create resuable modules within your software.
+ */
+
+
+
+/*
+ * function n_factorial (n)
+ *
+ * Purpose: this function will compute an n! result for an input number
+ *
+ * Input: a numerical value (no error checking performed, but any input
+ *        value below 2 will have a result of 1 returned)
+ *
+ * Return value: a numerical value representing the n! result
+ */
+
+function n_factorial (n)
+{
+	var p = 1; 		// minimum factorial is 1
+
+	for (var x = 2; x <= n; x++) {
+		p = p * x; 	// perform factorial operation here
+	}
+
+	return p;
+}
+
+
+/*
+ * function main()
+ *
+ * Purpose: to illustrate the use of a main-line code block for this program
+ *
+ * Input: none
+ *
+ * Return value: none
+ */
+
+
+function main ()
+{
+	var x;
+	var y;
+
+	// execute a loop from 1 to 10 inclusive, and output the n! for the loop counter
+
+	for (x = 1; x <= 10; x++) {
+		y = n_factorial (x);
+		document.writeln (x + " factorial = " + y);
+	}
+}
+
+
+
+main();	// execute program
+
+
+</script>
+</pre>

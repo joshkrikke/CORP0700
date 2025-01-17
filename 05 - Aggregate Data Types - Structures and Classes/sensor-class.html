@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<pre>
+<script>
+
+class Sensor {
+	#temperature;
+	#RPM;
+	#powered;
+
+	constructor(t = 0, r = 0, p = false) 
+	{
+		this.#temperature = 0;
+		this.#RPM = r;
+		this.#powered = p;
+	}
+
+	readSensor()
+	{
+		this.#temperature = Math.random() * 100;
+		this.#RPM = Math.trunc (Math.random() * 1000);
+		if (Math.random() < 0.5) {
+			this.#powered = false;
+		} else {
+			this.#powered = true;
+		}
+	}
+
+	getTemperature()
+	{
+		return this.#temperature;
+	}
+
+	getRPM()
+	{
+		return this.#RPM;
+	}
+
+	getPowerStatus()
+	{
+		return this.#powered;
+	}
+}
+
+
+function main()
+{
+	var s = new Sensor();
+	var s2 = new Sensor (50, 500, true);
+
+	s.readSensor();
+	document.writeln (s.getTemperature());
+	document.writeln (s.getRPM());
+	document.writeln (s.getPowerStatus());
+
+	document.writeln (s2.getTemperature());
+	document.writeln (s2.getRPM());
+	document.writeln (s2.getPowerStatus());
+
+}
+
+main();
+
+</script>
+</pre>
+
