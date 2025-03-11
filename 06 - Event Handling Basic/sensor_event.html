@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<pre>
+<script>
+/*
+ * sensor.html
+ *
+ * Reworked to simulate hourly readings with an interval of 1 second for each hour of a shift.
+ */
+
+function read_sensor(sensor_number) {
+    // Simulate a sensor reading through a random number between 0 and 100
+    return Math.random() * 100;
+}
+
+var temperature = []; // Array for temperature readings
+const MAX_READINGS = 8; // Number of readings to simulate an 8-hour shift
+let currentReading = 0; // Counter for readings
+let sum = 0;
+let high = 0;
+let low = 100;
+
+// Function to process and display statistics after collecting all readings
+function processReadings() {
+    const average = sum / MAX_READINGS;
+
+    // Output all readings visually
+    document.writeln("<br>Temperature Readings:<br>");
+    for (let x = 0; x < MAX_READINGS; x++) {
+        document.writeln(`Hour ${x + 1}: ${temperature[x].toFixed(2)}°C<br>`);
+    }
+
+    // Output statistics
+    document.writeln(`<br>Average Temperature Over Shift: ${average.toFixed(2)}°C`);
+    document.writeln(`<br>Highest Temperature Over Shift: ${high.toFixed(2)}°C`);
+    document.writeln(`<br>Lowest Temperature Over Shift: ${low.toFixed(2)}°C`);
+    document.writeln(`<br>Total Readings Taken: ${temperature.length}`);
+}
+
+// Function to simulate hourly sensor reading
+function simulateReading() {
+    if (currentReading < MAX_READINGS) {
+        const reading = read_sensor(1); // Generate a random reading
+        temperature[currentReading] = reading;
+
+        // Update statistics
+        sum += reading;
+        if (reading > high) high = reading;
+        if (reading < low) low = reading;
+
+        document.writeln(`Reading for Hour ${currentReading + 1}: ${reading.toFixed(2)}°C<br>`);
+
+        currentReading++;
+    } else {
+        clearInterval(intervalId); // Stop the simulation when all readings are collected
+        processReadings(); // Process and display results
+    }
+}
+
+// Start the simulation with an interval of 1 second per reading
+const intervalId = setInterval(simulateReading, 1000); // 1000ms = 1 second
+
+</script>
+</pre>
+</html>

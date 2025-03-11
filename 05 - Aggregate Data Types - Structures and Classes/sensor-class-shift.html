@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<pre>
+  <script>
+    
+  class Sensor {
+    #temperature;
+    #RPM;
+    #powered;
+    
+    constructor(t = 0, r = 0, p = false) {
+      this.#temperature = t;
+      this.#RPM = r;
+      this.#powered = p;
+    }
+    
+    readSensor() {
+      this.#temperature = Math.random() * 100; // Random temperature between 0 and 100
+      this.#RPM = Math.trunc(Math.random() * 1000); // Random RPM between 0 and 1000
+      this.#powered = Math.random() < 0.5; // Randomly powered on/off
+    }
+    
+    getTemperature() {
+      return this.#temperature;
+    }
+    
+    getRPM() {
+      return this.#RPM;
+    }
+    
+    getPowerStatus() {
+      return this.#powered;
+    }
+    
+    isHeavyLoad(sensor) {
+      return this.getPowerStatus() && this.getRPM() < 10;
+    }
+  }
+  
+  function wait(num_minutes) {
+    // Simulate waiting by doing nothing for a certain time
+  }
+  
+  function main() {
+    const MAX_READINGS = 8;         // Number of readings (samples) per shift
+    const TIME_DELAY = 60;          // Time delay in minutes before next reading
+    const sensorInstances = [];
+    
+    // Create instances of Sensor class for each hour and populate them
+    for (let hour = 0; hour < MAX_READINGS; hour++) {
+      const sensor = new Sensor(); // Create a new Sensor object
+      sensor.readSensor(); // Simulate reading data
+      sensorInstances.push(sensor); // Store the Sensor object in the array
+      wait(TIME_DELAY); // Simulate waiting for the next reading
+    }
+    
+    // Calculate average temperature and RPM, and find the highest RPM
+    let totalTemperature = 0;
+    let totalRPM = 0;
+    let highestRPM = 0;
+    let highestRPMHour = 0;
+    
+    for (let hour = 0; hour < sensorInstances.length; hour++) {
+      const sensor = sensorInstances[hour];
+      const temp = sensor.getTemperature();
+      const rpm = sensor.getRPM();
+      
+      totalTemperature += temp;
+      totalRPM += rpm;
+      
+      if (rpm > highestRPM) {
+        highestRPM = rpm;
+        highestRPMHour = hour + 1;
+      }
+
+      if (sensor.isHeavyLoad()) {
+        document.writeln(`Heavy load detected at Hour ${hour + 1}. RPM=${rpm}, Powered=${sensor.getPowerStatus()}`);
+      }
+    }
+    
+    const avgTemperature = totalTemperature / MAX_READINGS;
+    const avgRPM = totalRPM / MAX_READINGS;
+    
+    // Display results
+    document.writeln("Shift Sensor Data:");
+    for (let hour = 0; hour < sensorInstances.length; hour++) {
+      const sensor = sensorInstances[hour];
+      document.writeln(`Hour ${hour + 1}: Temp=${sensor.getTemperature().toFixed(2)}°C, RPM=${sensor.getRPM()}, Powered=${sensor.getPowerStatus()}`);
+    }
+    document.writeln(`<br>Average Temperature: ${avgTemperature.toFixed(2)}°C`);
+    document.writeln(`Average RPM: ${avgRPM.toFixed(2)}`);
+    document.writeln(`Highest RPM: ${highestRPM} at Hour ${highestRPMHour}`);
+  }
+  
+  main();
+    
+  </script>
+</pre>
+
+</html>

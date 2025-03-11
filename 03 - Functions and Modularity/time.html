@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<pre>
+<script>
+
+/*
+ * time.html
+ *
+ * This program will showcase the use of a programmer defined function with 
+ * input parameters including defaults
+ *
+ * The solution will create two functions:
+ *    main()         - the mainline code that is invoked when this file is executed
+ *    convert_HTML() - which will accept hours, minutes and seconds and convert to
+ *                     to fractional seconds
+ *
+ * The intent is to showcase the approaches to create resuable modules within your software.
+ */
+
+
+
+/*
+ * function convert_HMS(h = 0, m = 0, s = 0)
+ *
+ * Purpose: 
+ *
+ * Input: 3 parameters
+ *        h = 0 numeric, representing hours, default zero
+ *        m = 0 numeric, representing minutes, default zero
+ *        s = 0 numeric, representing seconds, default zero
+ *
+ * Return value: fractional hours based on conversion from HMS format
+ */
+
+function convert_HMS(h = 0, m = 0, s = 0)
+{
+	var fractional_time;
+
+	// compute fractional time based on hours, minutes and seconds
+
+	fractional_time= h + m / 60 + s / 3600;
+
+	return fractional_time;
+}
+
+
+/*
+ * function main()
+ *
+ * Purpose: to illustrate the use of a main-line code block for this program
+ *
+ * Input: none
+ *
+ * Return value: none
+ */
+
+
+function main ()
+{
+	var t;
+
+	// convert some HMS values to fractional hours
+
+	t = convert_HMS(); 
+	document.writeln ("convert_HMS() with no parameters: " + t);
+
+	t = convert_HMS(1);
+	document.writeln ("convert_HMS() with just hours = 1: " + t);
+
+	t = convert_HMS(3, 5);
+	document.writeln ("convert_HMS() with hours = 3, minutes = 5: " + t);
+
+	t = convert_HMS(3, 30, 44);
+	document.writeln ("convert_HMS() with hours = 3, minutes = 30, seconds = 44: " + t);
+}
+
+
+main();	// execute program
+
+
+</script>
+</pre>
