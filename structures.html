@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<pre>
+<script>
+
+/*
+ * structures.html
+ *
+ * This program will demonstrate some basic data structure (class) concepts.
+ */
+
+
+// define a simple data structure class called Person
+class Person {
+	// data members
+	firstname = "";
+	lastname = "";
+	address = "";
+	age = 0;
+	weight = 0;
+	bankaccountvalue = 0;
+}
+
+// allocate (instantiate) a variable called person based on class Person
+var person = new Person;
+
+// output some data from variable person
+document.writeln ("variable person First Name: " + person.firstname);
+document.writeln ("variable person Last Name: " + person.lastname);
+document.writeln ("variable person address: " + person.address);
+document.writeln ("variable person Age: " + person.age);
+document.writeln ("variable person Weight: " + person.age);
+document.writeln ("variable person Bank Account Value: $" + person.bankaccountvalue);
+
+// let's make the variable person useful by changing the member data
+person.firstname = "Joe";
+person.lastname = "Smith";
+person.address = "100 King St. Kitchener ON N2G 2F5";
+person.age = 33;
+person.weight = 150;
+person.bankaccountvalue = 2485;
+
+document.writeln ("After changing the person data members directly:");
+document.writeln ("variable person First Name: " + person.firstname);
+document.writeln ("variable person Last Name: " + person.lastname);
+document.writeln ("variable person address: " + person.address);
+document.writeln ("variable person Age: " + person.age);
+document.writeln ("variable person Weight: " + person.weight);
+document.writeln ("variable person Bank Account Value: $" + person.bankaccountvalue);
+
+// allocate a variable to maintain Sally Smith's details
+var person2 = new Person;
+
+person2 = { ...person };	// copy over Joe's details
+
+// update Sally's specifics (she lives at same address and has same last name as Joe)
+person2.firstname = "Sally";
+person2.age = 10;
+person2.weight = 80;
+person2.bankaccountvalue = 0;
+
+document.writeln ("The Smith Family details:");
+document.writeln ("variable person First Name: " + person.firstname);
+document.writeln ("variable person Last Name: " + person.lastname);
+document.writeln ("variable person address: " + person.address);
+document.writeln ("variable person Age: " + person.age);
+document.writeln ("variable person Weight: " + person.weight);
+document.writeln ("variable person Bank Account Value: $" + person.bankaccountvalue);
+
+document.writeln ("variable person2 First Name: " + person2.firstname);
+document.writeln ("variable person2 Last Name: " + person2.lastname);
+document.writeln ("variable person2 address: " + person2.address);
+document.writeln ("variable person2 Age: " + person2.age);
+document.writeln ("variable person2 Weight: " + person2.weight);
+document.writeln ("variable person2 Bank Account Value: $" + person2.bankaccountvalue);
+
+// another means of initializing a data structure / class
+
+var person3 = { firstname:"Billy", lastname:"Bob", address:"25 Duke St. Waterloo ON N4S 7W6", 
+	age:57, weight:193, bankaccountvalue:210 };
+
+document.writeln ("Our 3rd person:");
+document.writeln ("variable person3 First Name: " + person3.firstname);
+document.writeln ("variable person3 Last Name: " + person3.lastname);
+document.writeln ("variable person3 address: " + person3.address);
+document.writeln ("variable person3 Age: " + person3.age);
+document.writeln ("variable person3 Weight: " + person3.weight);
+document.writeln ("variable person3 Bank Account Value: $" + person3.bankaccountvalue);
+
+
+// define a data structure called Human with a number of properties (members) including constructor
+class Human {
+	// data members
+	firstname;
+	lastname;
+	address;
+	age;
+	weight;
+	bankaccountvalue;
+	
+	// constructor
+	constructor (fn, ln, addr, age, w, b) {
+		this.firstname = fn;
+		this.lastname = ln;
+		this.address = addr;
+		this.age = age;
+		this.weight = w;
+		this.bankaccountvalue = b;
+	}
+}
+
+// allocate (instantiate) a variable called person based on class Person
+var p = new Human ("Jane", "Jones", "55 Queen St. Cambridge ON N3W 1Q5", 26, 120, 32856);
+
+// output some data from variable person
+document.writeln ("Showing Human class data");
+document.writeln ("variable p First Name: " + p.firstname);
+document.writeln ("variable p Last Name: " + p.lastname);
+document.writeln ("variable p address: " + p.address);
+document.writeln ("variable p Age: " + p.age);
+document.writeln ("variable p Weight: " + p.weight);
+document.writeln ("variable p Bank Account Value: $" + p.bankaccountvalue);
+
+
+</script>
+</pre>

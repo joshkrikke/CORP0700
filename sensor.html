@@ -1,0 +1,72 @@
+﻿
+<pre>
+<script>
+
+/*
+ * sensor.html
+ *
+ * This program will showcase some basic array data processing techniques
+ *
+ * We will populate an array, then iterate through to compute averages, high and low values in array.
+ * The use of constants will allow us to easily adjust number of data items - making code maintenance simple!
+ */
+
+function read_sensor (sensor_number)
+{
+	// simulate a sensor reading through a random number between 0 and 100
+	// Math.random() returns a randomized fraction from 0.0 up to (but not including) 1.0
+	
+	return Math.random() * 100;
+}
+
+function wait (num_minutes)
+{
+	// simulate waiting num_minutes
+	// here we'll just do nothing
+}
+
+var temperature = [];		// array for temperature readings
+var x;						// loop control variable
+const MAX_READINGS = 8;		// number of readings
+const TIME_DELAY = 60;		// time delay in minutes before next reading
+
+// collect our readings over one shift
+
+for (x = 0; x < MAX_READINGS; x++) {
+	temperature[x] = read_sensor (1);
+	wait (TIME_DELAY);
+}
+
+// output all our readings visually
+
+for (x = 0; x < MAX_READINGS; x++) {
+	document.writeln (temperature[x]);
+}
+
+// compute our statistics
+
+var sum = 0;
+var average = 0;
+var high = 0;
+var low = 100;
+
+for (x = 0; x < MAX_READINGS; x++) {
+	sum = sum + temperature[x];
+	if (temperature[x] > high) {
+		high = temperature[x];
+	}
+	if (temperature[x] < low) {
+		low = temperature[x];
+	}
+}
+average = sum / MAX_READINGS;
+
+// output stats
+
+document.writeln ("Average temperature over shift: " + average);
+document.writeln ("Highest temperature over shift: " + high);
+document.writeln ("Lowest temperature over shift: " + low);
+
+
+</script>
+</pre>

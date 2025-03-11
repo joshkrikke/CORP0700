@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<pre>
+<script>
+
+/*
+ * classes.html
+ *
+ * This program will demonstrate some basic class concepts, both pre-defined classes
+ * as well as custom classes with data members and class methods
+ */
+
+
+// define a class called Person with a number of properties (members)
+class Circle {
+	// class data members
+	#radius;
+	
+	// class methods
+	constructor (r = 1) {
+		this.#radius = r;
+	}
+	getRadius() {				// example of a "getter" method
+		return this.#radius;	
+	}
+	getDiameter() {
+		return this.#radius * 2;	// diameter is double the radius
+	}
+	getCircumference() {
+		return 2 * Math.PI * this.#radius; 	// formula: 2 pi r
+	}
+}
+
+// allocate (instantiate) a variable called c based on class Circle
+var c1 = new Circle (5);		// circle has radius of 5 units
+var c2 = new Circle ();			// circle has default radius
+
+// output use the Circle functionality
+console.log (c1);
+console.log (c2);
+
+c1.#radius = 4;
+document.writeln ("Private data of c1 is: " + c1.#radius); // attempt to access private data member directly - undefined
+document.writeln ("Private data of c2 is: " + c2.#radius); // attempt to access private data member directly - undefined
+
+
+document.writeln ("c1 Radius: " + c1.getRadius());	
+document.writeln ("c1 Diameter: " + c1.getDiameter());
+document.writeln ("c1 Circumference: " + c1.getCircumference());
+
+document.writeln ("c2 Radius: " + c2.getRadius());	
+document.writeln ("c2 Diameter: " + c2.getDiameter());
+document.writeln ("c2 Circumference: " + c2.getCircumference());
+
+// on the fly data structures
+var car = { make: "Ford", model: "F150", color: "Blue" };
+document.writeln ("My car is a " + car.color + " " + car.make + " " + car.model);
+console.log (car);
+
+// some fun with Math class
+var c = [];
+
+for (x = 0; x < 10; x++) {
+	c[x] = Math.trunc ((Math.random() * 100) + 1);
+}
+console.table (c);
+
+// some fun with Date class
+var d1 = new Date();
+var d2 = new Date (2024, 1, 15, 3);
+var d3 = new Date ("January 15, 2024 11:15:22");
+
+document.writeln ("d1: " + d1);
+document.writeln ("d2: " + d2);
+document.writeln ("d3: " + d3);
+
+const days = [ "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi" ];
+document.writeln (days[d3.getDay()]);
+
+
+</script>
+</pre>

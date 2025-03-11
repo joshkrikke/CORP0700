@@ -1,0 +1,52 @@
+﻿
+<pre>
+<script>
+
+/*
+ * tictactoe.html
+ *
+ * This program showcase the creation of an array of arrays (matrix) to represent a tic tac toe boad.
+ * The matrix is 3 x 3 - 3 rows, 3 columns.
+ * This also showcases some common techniques to ouptut matrix style data
+ */
+
+var tictactoe = [ [ "_", "_", "_" ], [ "_", "_", "_" ], [ "_", "_", "_" ] ];
+
+// put an X in the middle square
+
+tictactoe[1][1] = "X";
+
+var row = 0, col = 0; 		// allocate row and column loop counters
+
+// output tic tac toe board
+
+for (row = 0; row < 3; row++) {
+	for (col = 0; col < 3; col++) {
+		document.write (tictactoe[row][col] + " ");	// output tic tac toe board data and a space
+	}
+	document.write ("\n");	// next row on new line
+}
+document.write ("\n\n\n");	// leave a few blank lines before next output
+
+// fill the 3rd column with O
+
+for (row = 0; row < 3; row++) {
+	tictactoe[row][2] = "O";	// column 2 is the 3rd column
+}
+
+// output tic tac toe board
+
+for (row = 0; row < 3; row++) {
+	for (col = 0; col < 3; col++) {
+		document.write (tictactoe[row][col] + " ");	// output tic tac toe board data and a space
+	}
+	document.write ("\n");	// next row on new line
+}
+document.write ("\n\n\n");	// leave a few blank lines before next output
+
+// here's what JavaScript shows when you try to output the array directly - can you make sense of this?
+
+document.writeln (tictactoe);
+
+</script>
+</pre>
